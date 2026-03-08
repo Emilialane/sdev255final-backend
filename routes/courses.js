@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Course = require('../models/courses');
+const course = require('../models/courses');
 
 router.get('/', async (req, res) => {
-  const courses = await Course.find();
+  const courses = await course.find();
   res.json(courses);
 });
 
