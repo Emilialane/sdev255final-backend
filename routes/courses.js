@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const course = require('../models/courses');
+
+// Correct path to the model
+const Course = require('../models/courses');  // must match filename exactly
 
 router.get('/', async (req, res) => {
-  const courses = await course.find();
+  const courses = await Course.find();
   res.json(courses);
 });
 
