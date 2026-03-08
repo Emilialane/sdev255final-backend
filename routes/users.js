@@ -1,11 +1,8 @@
-const express = require('express');
-const router = express.Router();
-const User = require('../models/users'); // lowercase users
+const mongoose = require('mongoose');
 
-router.post('/register', async (req, res) => {
-  const user = new User(req.body);
-  await user.save();
-  res.json({ message: 'User registered', user });
+const userSchema = new mongoose.Schema({
+  email: String,
+  password: String
 });
 
-module.exports = router;
+module.exports = mongoose.model('User', userSchema);

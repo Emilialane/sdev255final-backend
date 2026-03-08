@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const Course = require('../models/courses'); // lowercase courses
+
+// Must exactly match filename in models/
+const Course = require('../models/courses'); // lowercase 'courses'
 
 router.get('/', async (req, res) => {
   const courses = await Course.find();
