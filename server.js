@@ -8,24 +8,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// routes
 const coursesRoute = require('./routes/courses');
 const usersRoute = require('./routes/users');
 
 app.use('/courses', coursesRoute);
 app.use('/users', usersRoute);
 
-// test route
 app.get('/', (req, res) => {
   res.send("API is running");
 });
 
 const PORT = process.env.PORT || 3000;
 
-// connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected");
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
-  .catch(err => console.error(err));
+  .catch(err => console.log(err));
