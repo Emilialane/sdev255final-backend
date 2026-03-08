@@ -1,25 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const Course = require('../models/Course');
+
+let courses = [];
 
 // GET all courses
-router.get('/', async (req, res) => {
-  const courses = await Course.find();
+router.get('/', (req, res) => {
   res.json(courses);
 });
 
-// POST a new course
-router.post('/', async (req, res) => {
-  const course = new Course(req.body);
-  await course.save();
+// POST new course
+router.post('/', (req, res) => {
+  const course = req.body;
+  courses.push(course);
   res.json(course);
 });
 
-// PUT update a course
-router.put('/:id', async (req, res) => {
-  const course = await Course.findByIdAndUpdate(req.params.id, req.body, { new: true });
-  res.json(course);
-});
 
 // DELETE a course
 router.delete('/:id', async (req, res) => {
